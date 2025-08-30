@@ -26,9 +26,12 @@ export function AngleDisplay({
   };
 
   // SVG dimensions and center point
-  const svgSize = 160;
+  const svgSize = 200;
   const centerX = svgSize / 2;
   const centerY = svgSize / 2;
+  
+  // Generate letter label from angle ID
+  const letterLabel = String.fromCharCode(65 + (parseInt(angle.id.split('-')[1]) || 0));
   
   // Convert degrees to radians for calculations
   const angleRadians = (angle.degrees * Math.PI) / 180;
@@ -48,10 +51,10 @@ export function AngleDisplay({
       <div className="relative">
         <div
           className={`
-            relative w-40 h-40 border-2 rounded-lg cursor-pointer transition-all duration-200
+            relative w-50 h-50 cursor-pointer transition-all duration-200 p-4
             ${isSelected 
-              ? 'border-blue-500 bg-blue-50 shadow-lg' 
-              : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-md'
+              ? 'bg-blue-50 rounded-lg shadow-lg' 
+              : 'hover:bg-gray-50 rounded-lg'
             }
             ${disabled ? 'cursor-not-allowed opacity-50' : ''}
           `}
@@ -64,7 +67,7 @@ export function AngleDisplay({
               handleClick();
             }
           }}
-          aria-label={`Angle ${angle.degrees.toFixed(1)} degrees${isSelected ? `, selected as position ${selectionOrder}` : ''}`}
+          aria-label={`Angle ${letterLabel}, ${angle.degrees.toFixed(1)} degrees${isSelected ? `, selected as position ${selectionOrder}` : ''}`}
         >
           <svg
             width={svgSize}
@@ -103,9 +106,14 @@ export function AngleDisplay({
             />
           </svg>
           
+          {/* Floating letter label positioned away from angle endpoints */}
+          <div className="absolute top-2 left-2 w-8 h-8 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center text-lg font-bold shadow-md">
+            {letterLabel}
+          </div>
+          
           {/* Selection badge */}
           {isSelected && selectionOrder && (
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+            <div className="absolute top-2 right-2 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
               {selectionOrder}
             </div>
           )}

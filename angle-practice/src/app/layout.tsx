@@ -17,16 +17,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "DAT Angle Practice | Perceptual Ability Test Prep",
-  description: "Practice angle ranking questions for the Dental Admission Test (DAT) Perceptual Ability Test section. Improve your spatial reasoning skills with timed practice tests.",
-  keywords: "DAT, Dental Admission Test, PAT, Perceptual Ability Test, angle ranking, spatial reasoning, dental school prep",
+  description:
+    "Practice angle ranking questions for the Dental Admission Test (DAT) Perceptual Ability Test section. Improve your spatial reasoning skills with timed practice tests.",
+  keywords:
+    "DAT, Dental Admission Test, PAT, Perceptual Ability Test, angle ranking, spatial reasoning, dental school prep",
   authors: [{ name: "DAT Prep Tools" }],
   robots: "index, follow",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "DAT Angle Practice"
-  }
+    title: "DAT Angle Practice",
+  },
 };
 
 export const viewport = {
@@ -59,9 +61,7 @@ export default function RootLayout({
                   </p>
                 </div>
               </header>
-              <main className="flex-1">
-                {children}
-              </main>
+              <main className="flex-1">{children}</main>
             </div>
           </TestProvider>
         </ServiceWorkerProvider>

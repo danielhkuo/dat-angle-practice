@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9fafb;
+  --foreground: #111827;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* DAT Angle Practice specific styles */
+.angle-container {
+  @apply relative cursor-pointer transition-all duration-200 hover:scale-105;
+}
+
+.angle-container:hover {
+  @apply shadow-lg;
+}
+
+.angle-selected {
+  @apply ring-2 ring-blue-500 shadow-lg;
+}
+
+.angle-badge {
+  @apply absolute -top-2 -right-2 w-6 h-6 bg-blue-500 text-white text-sm font-bold rounded-full flex items-center justify-center shadow-md;
+}
+
+.answer-slot {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-4 min-h-[80px] flex items-center justify-center transition-colors duration-200;
+}
+
+.answer-slot.filled {
+  @apply border-solid border-blue-300 bg-blue-50;
+}
+
+.timer-warning {
+  @apply text-red-600 font-bold animate-pulse;
+}
+
+.question-grid {
+  @apply grid grid-cols-2 gap-4 max-w-md mx-auto;
+}
+
+.answer-grid {
+  @apply grid grid-cols-4 gap-2 max-w-lg mx-auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .question-grid {
+    @apply gap-3;
+  }
+  
+  .answer-grid {
+    @apply grid-cols-2 gap-3;
+  }
+}
+
+/* Focus styles for accessibility */
+.angle-container:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+button:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
